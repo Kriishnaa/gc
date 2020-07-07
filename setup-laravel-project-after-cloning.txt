@@ -1,0 +1,16 @@
+
+How to run github laravel projects.
+
+1. download the laravel project from github.
+2. copy that project in hotdocs folder and open the folder location in cmd.
+3. now first rename the "env.example file to.env"
+4. you can configure the database information here.
+5. now open cmd and run some commands...
+ -Run : composer install or php composer.phar install
+ -Run : php artisan key:generate
+ -Run : php artisan migrate
+ -Run : php artisan db:seed to run seeders, if any.
+ -Run : php artisan serve 
+
+Ref.
+- https://stackoverflow.com/questions/38437072/setup-laravel-project-after-cloning

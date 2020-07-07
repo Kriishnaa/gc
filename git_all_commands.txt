@@ -1,0 +1,82 @@
+**********************************
+=>Check already setup things
+git config --list
+
+=>Set User & Email 
+git config --global user.name "FIRST_NAME LAST_NAME"
+git config --global user.email "MY_NAME@example.com"
+
+=>Get User & Email 
+git config --global user.name
+git config --global user.email
+
+=>Commands list 
+git init
+git status
+git stash
+git pull
+git stash pop
+git add .
+git commit -m "message" 
+---OR----
+{
+	GIT_COMMITTER_NAMEE="user_name" GIT_COMMITTER_EMAIL="user_mail@gmail.com" GIT_AUTHOR_NAME="user_name" GIT_AUTHOR_EMAIL="user_mail@gmail.com" git commit -a -m "Message goes here"  
+}
+git push
+
+=> Manually add credential
+git:https/github.com
+
+**********************************
+=>REMOVE OLD GIT USER DATA - User & Email 
+You can use the --unset flag of git config to do this like so:
+
+For Single user 
+git config --global --unset user.name
+git config --global --unset user.email
+If you have more variables for one config you can use:
+
+For Multiple Users : 
+git config --global --unset-all user.name
+**********************************
+**********************************
+=>Git does not remember username and password on Windows
+git config --list
+git config --global credential.helper manager
+git config --global --unset credential.helper
+**********************************
+=> Taking updates from "master" to "branch" on github
+
+git checkout master    
+git pull --rebase    
+git checkout Mybranch    
+git rebase master
+git push -f origin Mybranch
+
+Note : need to resolve all conflicts with git mergetool &, git rebase --continue, git rebase --skip, git add -u, according to situation and git hints, till all is solved
+
+=> Merge "branch" code with "master"
+git checkout master
+git merge branch1
+git push
+
+=>https://stackoverflow.com/questions/20101994/git-pull-from-master-into-the-development-branch
+**********************************
+git remote rm origin
+git remote add origin https://username:mypassword@github.com/path/to/repo.git
+**********************************
+=>remote: Repository not found
+fatal: repository 'https://github.com/MyRepo/project.git/' not found
+I uninstalled the git credentials manager and reinstalled it and then I could easily pull and push to the repository. Here are the commands
+=>Here is solution
+$ git credential-manager uninstall
+$ git credential-manager install
+**********************************
+=>Brach Delete
+git branch -d test
+**********************************
+**********************************
+**********************************
+**********************************
+**********************************
+**********************************

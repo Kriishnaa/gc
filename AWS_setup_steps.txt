@@ -1,0 +1,75 @@
+************************************************************************************
+<<<<<<<<<<<<<<<<<<< AMAZON ec2 instance creation steps >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+====================================================================================
+Step 1 : Choose an Amazon Machine Image (AMI)
+Step 2 : Choose an Instance Type
+Step 3 : Configure Instance Details
+Step 4 : Add Storage
+Step 5 : Add Tags 
+Step 6 : Configure Security Group  
+Step 7 : Review Instance Launch 
+References sites
+=========> https://aws.amazon.com/ec2/getting-started/
+=========> https://www.guru99.com/creating-amazon-ec2-instance.html
+=========> https://www.datacamp.com/community/tutorials/aws-ec2-beginner-tutorial
+=========> https://www.edureka.co/blog/ec2-aws-tutorial-elastic-compute-cloud/
+=========> https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html
+=========> https://www.youtube.com/watch?v=lCndHNw1AUE&t=1937s
+=========> https://www.youtube.com/watch?v=MQPDZYbYpGQ
+**************************************************************************************
+**************************************************************************************
+<<<<<<<<<<<<<<<<<<< Install LAMP From PUTTY >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html
+AWS EC2 Linux Putty command
+A : Prepare the LAMP Server
+Step 1 => sudo yum update -y
+Step 2 => sudo yum install -y httpd24 php70 mysql56-server php70-mysqlnd
+Step 3 => sudo service httpd start
+Step 4 => sudo chkconfig httpd on
+Step 5 => chkconfig --list httpd
+Step 6 => ls -l /var/www
+Step 7 => sudo usermod -a -G apache ec2-user
+{
+Command : 
+	=> exit
+	=> groups
+	=> sudo chown -R ec2-user:apache /var/www
+	=> sudo chmod 2775 /var/www
+	=> find /var/www -type d -exec sudo chmod 2775 {} \;
+}
+----------------------------------------------------------
+B : Test Your Lamp Server
+echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
+http://my.public.dns.amazonaws.com/phpinfo.php
+----------------------------------------------------------
+C : Secure the Database Server
+Command : 
+Step => sudo service mysqld start
+Step => sudo mysql_secure_installation
+--------------------------------------------------------------------------------------
+D : (Optional) Install phpMyAdmin
+Command : 
+Step => sudo yum install php70-mbstring.x86_64 php70-zip.x86_64 -y
+Step => sudo service httpd restart
+Step => cd /var/www/html
+Step => wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
+Step => mkdir phpMyAdmin && tar -xvzf phpMyAdmin-latest-all-languages.tar.gz -C phpMyAdmin --strip-components 1
+Step => rm phpMyAdmin-latest-all-languages.tar.gz
+Step => sudo service mysqld start
+Final View Step => http://my.public.dns.amazonaws.com/phpMyAdmin
+ 
+**************************************************************************************
+**************************************************************************************
+Final step 
+===> We need to do following two things 
+A. Import the database 
+[e.g. - http://1X.XX.1X4.XX/phpMyAdmin/ ---OR----- http://my.public.dns.amazonaws.com/phpMyAdmin]
+B. All projects file upload in directory : /var/www/html
+
+That's it. 
+************************************************************************************
+ 
+
+
+
+
