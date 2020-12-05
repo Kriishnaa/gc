@@ -1,0 +1,16 @@
+Put below code inside console.php file
+
+routes=>console.php
+
+Artisan::command('cache:all-clear', function () {
+    //clear cache
+    $this->comment('Clearing all type of caches...');
+    $this->call('view:clear');
+    $this->call('route:clear');
+    $this->call('config:clear');
+    $this->call('cache:clear');
+})->describe('Clear all type of caches like view,route,config,data');
+
+Run with root directoty
+
+==> php artisan cache:all-clear
