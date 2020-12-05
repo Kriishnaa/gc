@@ -14,3 +14,13 @@ How to run github laravel projects.
 
 Ref.
 - https://stackoverflow.com/questions/38437072/setup-laravel-project-after-cloning
+
+
+***************************
+Five most important commands if your Laravel is not working as expected after some modifications in .env or database folder or because of any other modifications. Here is full explanation: https://www.youtube.com/watch?v=Q1ynDMC8UGg
+
+php artisan config:clear
+php artisan cache:clear
+composer dump-autoload
+php artisan view:clear
+php artisan route:clear
