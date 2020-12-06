@@ -1,0 +1,335 @@
+1) How to Insert Records in table?
+Syntax:
+Yii::$app->db->createCommand()->insert('user', ['name' => 'Sam','age' => 30])->execute();
+Example:
+Yii::$app->db->createCommand()->insert('tbl_user',['name' => 'yii','status' => 1])->execute();
+-------------------------------------------------- 
+2) How to Update Records in table?
+Syntax: 
+$connection->createCommand()->update('table_name', [SET_Values], 'CONDITION')->execute();
+Example:        
+Yii::$app->db->createCommand()->update('user', ['status' => 1], 'age > 30')->execute();
+-------------------------------------------------- 
+3) How to Delete Records in table? 
+Syntax: 
+Yii::$app->db->createCommand()->delete('table_name', 'CONDITION')->execute();
+Example: 
+Yii::$app->db->createCommand()->delete('user', 'status = 0')->execute();
+--------------------------------------------------
+4) How to select all data of whole table in array formats?
+// return a set of rows. each row is an associative array of column names and values.
+// an empty array is returned if the query returned no results
+Syntax:
+Yii::$app->db->createCommand('SELECT * FROM table_name')->queryAll();
+Example:
+$posts = Yii::$app->db->createCommand('SELECT * FROM post')->queryAll();
+--------------------------------------------------
+5) How to select specific row's data of the table?
+// return a single row (the first row)
+// false is returned if the query has no result
+Syntax:
+Yii::$app->db->createCommand('SELECT * FROM table_name WHERE CONDITION')->queryOne();
+Example:
+$posts = Yii::$app->db->createCommand('SELECT * FROM post WHERE id=1')->queryOne();
+--------------------------------------------------
+6) How to select specific column's data of the table? 
+// return a single column (the first column)
+// an empty array is returned if the query returned no results
+Example:
+$titles = Yii::$app->db->createCommand('SELECT title FROM post')
+             ->queryColumn();
+--------------------------------------------------
+7) How to get specific id's record found or not in the table?  
+// return a scalar value
+// false is returned if the query has no result
+Example:
+$count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM post')->queryScalar();
+--------------------------------------------------
+8) String value to Date convert in Yii2 query
+Example:
+->andWhere(['between',"UNIX_TIMESTAMP(STR_TO_DATE(end_date,'%d-%m-%Y'))",strtotime($data['start_date']),strtotime($data['end_date'])])
+--------------------------------------------------
+9) How to declared form in Yii2?
+$form = ActiveForm::begin(['id' => 'search-form', 'method' => 'get', 'action' => Url::to(['controllername/functionname'])]); ?>
+<div class="form-group col-md-3">
+        <?= Html::submitButton( '<i class="fa fa-search"></i> Search' , ['id'=>'submit_btn','class' => 'btn btn-sm pull btn-success search_submit','data-toggle'=>"tooltip" ,'data-placement'=>"top" ,'title'=>"Search"]) ?>
+        <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Reset">
+            <button type="button" onclick="reset_data();" class="btn btn-sm pull btn-warning search_submit">
+                <i class="fa fa-refresh"></i> Reset</button>
+        </a>
+    </div>
+<?php ActiveForm::end(); ?>
+--------------------------------------------------
+10) How to get normal query from Yii2 query?
+Example:
+Yii::$app->db->createCommand('SELECT * FROM post')->createCommand()->getRawSql();
+--------------------------------------------------
+11)Redirect to another controller 
+public function actionFunction_name(){
+    return $this->redirect(['controller_name/function_name']);
+}
+--------------------------------------------------
+12)View from controller
+public function actionFunction_name(){
+    $paramers = array(); // contains all data you want to send view parts
+    return $this->render('view_name',['paramers'=>$paramers]);
+}
+--------------------------------------------------
+13)Get only array key & values from table
+$data = array(); // contains many columns i.e id,name,type,status, bla , bla..
+ArrayHelper::map($data, 'id', 'name');
+--------------------------------------------------
+14) Pagination in Yii2
+//Need to adding All related namespaces
+//Controller part
+$query = OurModel::find(); // model 
+$countQuery = clone $query;
+$pages = new Pagination(['totalCount' => $countQuery->count(),'PageSize' => 10]);
+$data = $query->offset($pages->offset)
+                ->limit($pages->limit)
+                ->orderBy(['id'=>SORT_DESC])
+                ->createCommand()
+                ->queryAll();
+//View part
+echo LinkPager::widget(['pagination' => $pages]);
+--------------------------------------------------
+15) Image uploading in Yii2
+    $model->file = UploadedFile::getInstance($model, 'file');
+    //For File upload code
+    if ($model->file && $model->validate()) {                
+        $model->file->saveAs('uploads/' . $model->file->baseName . '.' . $model->file->extension);
+    }
+--------------------------------------------------
+16) Get table's All Data in Object format
+$data = ModelName::find()->all();
+foreach($data as $value){
+    echo $value->id;
+    echo $value->name;
+}
+--------------------------------------------------
+17)Get Specific row's data in object format
+$data = ModelName::find()->where(['id' =>$id])->one();
+$data->id;
+$data->name; etc.
+--------------------------------------------------
+18) Post data get in controller
+Yii::$app->request->post();
+--------------------------------------------------
+19) CRUD DEMO Yii2
+/////////////////////////DB Structure///////////////////////////////
+
+    #   Name    Type    Collation   Attributes  Null    Default Comments    Extra   Action
+    1   emp_id Primary  int(10)         No  None        AUTO_INCREMENT   Change Change   Drop Drop  
+More More
+    2   emp_name    varchar(255)    latin1_swedish_ci       Yes NULL             Change Change   Drop Drop  
+More More
+    3   emp_mobile  varchar(20) latin1_swedish_ci       Yes NULL             Change Change   Drop Drop  
+More More
+    4   emp_email   varchar(255)    latin1_swedish_ci       Yes NULL             Change Change   Drop Drop  
+///////////////////////////Controller//////////////////////////////////////
+
+
+<?php
+namespace app\controllers;
+use Yii;
+use yii\web\Controller;
+use yii\data\Pagination;
+use app\models\EmployeeModel;
+
+class EmployeeController extends Controller {
+
+    //Begin of function:actionIndex() : For Listing
+    public function actionIndex() {
+        return redirect['employee/list'];
+    } // End of function:actionIndex() 
+
+    // Begin of function:actionList() : For Listing
+    public function actionList() {
+        $query = EmployeeModel::find();
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy(['emp_name'=>SORT_ASC])
+            ->all();
+        return $this->render('emp_list_view', [
+             'emp_records' => $models,
+             'pages' => $pages
+        ]);
+
+    } // End of function:actionList() 
+
+    //Begin of function:actionNew() : For New Registration Form
+    public function actionNew() {
+        
+        $model = new EmployeeModel();
+        if($model->load(Yii::$app->request->post())){
+            if($model->save()){   
+                $msg = "success";
+                $msg_content = "Record has been added successfully";
+            }else{
+                $msg = "error";
+                $msg_content = "Something went wrong for new entry.";
+            }
+            Yii::$app->session->setFlash($msg?$msg:"", $msg_content?$msg_content:"");
+            return $this->redirect(['employee/list']);
+        }
+        return $this->render('emp_action_view',array('model'=>$model));
+        
+
+    } // End of function:actionIndex() 
+
+    //Begin of function:actionEdit() : For Updates
+    public function actionEdit($emp_id = NULL){ 
+        if($emp_id != NULL){
+            $model = EmployeeModel::find()->where(['emp_id' => $emp_id])->one();
+            if($model && $model->load(Yii::$app->request->post())){
+                if($model->save()){   
+                    $msg = "success";
+                    $msg_content = "Record has been updated successfully";
+                }else{
+                    $msg = "error";
+                    $msg_content = "Something went wrong for edit/update operation.";
+                }
+                Yii::$app->session->setFlash($msg?$msg:"", $msg_content?$msg_content:"");
+            }
+            return $this->render('emp_action_view',array('model'=>$model)); 
+        }else{
+            return $this->redirect(['employee/list']);
+        }
+    
+    }//End of function:actionEdit()   
+  
+    //Begin of function:actionDelete() : For Delete
+    public function actionDelete($emp_id = NULL){
+        
+        if($emp_id != NULL){ 
+            //$model = DvRegistrationNewModel::findOne($id);
+            $model = EmployeeModel::find()->where(['emp_id' => $emp_id])->one();
+            if($model->delete()){
+                $msg = "success";
+                $msg_content = "Record has been deleted successfully";
+            }else{
+                $msg = "error";
+                $msg_content = "Something went wrong for delete operation.";
+            }
+            Yii::$app->session->setFlash($msg?$msg:"", $msg_content?$msg_content:""); 
+        }
+        return $this->redirect(['employee/list']);
+        
+    }// End of function:actionDelete()
+
+}// --- End of class:DvNewRegController --- //
+
+///////////////////////View//////////////////////////////////////////
+<?php
+use yii\helpers\Html;
+use yii\widgets\LinkPager;
+use yii\helpers\Url;
+$this->title = 'All Registered Employee Details';
+$this->params['breadcrumbs'][] = $this->title; ?>
+<div class="dv-users-index">
+    <?php if(count($emp_records) > 0){ ?>
+        <table class="table table-striped">
+            <thead>
+                <tr> 
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php  
+                foreach($emp_records as $user){ ?> 
+                     <tr>
+                        <td><?php echo $user->emp_name;?></td>
+                        <td><?php echo $user->emp_email; ?></td>
+                        <td><?php echo $user->emp_mobile; ?></td>
+                        <td><a href="<?= Url::to("edit?emp_id=$user->emp_id")?>">Edit</td>
+                        <td><a href="<?= Url::to("delete?emp_id=$user->emp_id")?>" onclick="return confirm('Are you sure for delete?');">Delete</td>
+                     </tr><?php 
+                }?>
+            <tbody>
+        </table>
+        <?php /*  display pagination */
+            echo LinkPager::widget(['pagination' => $pages]);
+        }else{ echo "No Records Found";} ?>
+</div>
+----------------------------------------------------------------------
+<?php
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+$this->title = $model->isNewRecord ? "New Registration" : "Edit Registration"; 
+$this->params['breadcrumbs'][] = $this->title; 
+?>
+<?php //echo "<pre>"; print_r($model); ?>
+<div class="emp-reg-form">
+    <?php $form = ActiveForm::begin(['id' => 'emp_registration_form',
+                                    'fieldConfig' => ['options' => ['class' => 'form-group col-md-8'],
+                                    ]]); ?>
+    <div class="form-group" style="float:left;width:100%">
+        <?= $form->field($model, 'emp_name')
+                ->input('text', ['placeholder' => "Employee Name", 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Employee Name"])
+                ->label(false); ?>
+        <?= $form->field($model, 'emp_mobile')
+                ->input('mobile', ['placeholder' => "Mobile*", 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Mobile"])
+                ->label(false); ?>
+        <?= $form->field($model, 'emp_email')
+                ->input('email', ['placeholder' => "Email", 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Email"])
+                ->label(false); ?>
+    </div>
+    <div class="form-group col-md-12">
+        <?= Html::submitButton($model->isNewRecord ? '<i class="fa fa-pencil"></i> New Registration' : '<i class="fa fa-pencil"></i> Update Employee', ['id'=>'create_emp','class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a('<i class="fa fa-times"></i> Cancel', ['list'], ['class' => 'btn back_button btn-danger cancel_button']); ?>
+    </div>
+    <?php ActiveForm::end(); ?>
+</div>
+
+/////////////////////////Model////////////////////////////////////////
+<?php
+namespace app\models;
+use Yii;
+class EmployeeModel extends \yii\db\ActiveRecord{
+    
+    //Table name
+    public static function tableName(){
+        return 'emp_master';
+    }
+
+    //Validation
+    public function rules(){
+        return [
+            [['emp_name','emp_mobile'],'required'],
+            [['emp_email'],'default']
+        ];
+    }
+
+    //During Insert / Updates Action 
+    public function beforeSave($insert){
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        // ...custom code here...
+        return true;
+        /*
+        echo "11";
+        if (parent::beforeSave($insert)) {
+            echo "22";
+            if(!empty($this->isNewRecord)){ echo "33";  }
+            echo "44";
+            return true;
+        } else {
+            echo "55";
+            return false;
+        }
+        echo "66";
+        */
+    }
+ 
+}// --- End of class:EmployeeModel --- //
+
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
