@@ -1,0 +1,45 @@
+php artisan make:migration add_votes_to_users_table --table=users
+
+php artisan make:migration create_users_table --create=users
+
+php artisan route:list
+
+//////////////////////////////////////////
+
+
+{{ ControllerName::Functionname($params); }}
+OR
+
+<?php echo ControllerName::Functionname($params);?>
+
+//////////////////////////////////////////
+
+
+laravel call controller method from another controllerphp by TryOrFail on Apr 19 2020 Donate
+ 
+return \App::call('bla\bla\ControllerName@functionName');
+ 
+
+//////////////////////////////////////////
+
+// Generate basic scaffolding...
+php artisan ui bootstrap
+php artisan ui vue
+php artisan ui react
+
+// Generate login / registration scaffolding...
+php artisan ui bootstrap --auth
+php artisan ui vue --auth
+php artisan ui react --auth
+
+/////////////////////////
+
+php artisan make:model MODEL_PATH\MODEL_NAME -mcrs
+or
+php artisan make:model MODEL_PATH\MODEL_NAME -a
+  
+-a, --all Generate a migration, factory, and resource controller for the model 
+-m, --migration Create a new migration file for the model.
+-c, --controller Create a new controller for the model.
+-r, --resource Indicates if the generated controller should be a resource controller
+-s, --seeder Create a new seeder file for the model.
