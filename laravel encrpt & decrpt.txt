@@ -1,0 +1,7 @@
+# Searched for Laravel 5.8
+# Check https://laravel.com/docs/5.8/encryption for different Laravel versions.
+use Illuminate\Support\Facades\Crypt;
+
+$encrypted = Crypt::encryptString('Hello world.');
+
+$decrypted = Crypt::decryptString($encrypted);
