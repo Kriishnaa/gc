@@ -1,0 +1,24 @@
+public function store(Request $request)
+    {
+        //dd($request->all());
+        //dd(request()->all());
+        //dd($request->input('detail'));
+        //print_r($request->input('name')); die;
+        //dd($name = $request->input('name')); // option 1
+        //dd($name = $request->get('name')); // option 2
+        //dd($name = $request->name); // even more simple?
+        //dd($name = request('name')); // there's also helper
+        //dd($name = data_get($request, 'name')); // did you even know this function?
+
+
+        $request->validate([
+            'name' => 'required',
+            'detail' => 'required',
+        ]);
+    
+        Product::create($request->all());
+     
+        return redirect()->route('products.index')
+                        ->withInput()
+                        ->with('success','Product created successfully.');
+    }
