@@ -16,7 +16,7 @@ git status
 git stash
 git pull
 git stash pop
-git add .
+git add .   // unstaged => git restore --staged filename
 git commit -m "message" 
 ---OR----
 {
