@@ -1,0 +1,78 @@
+$('.energy_category').change(function(e){ 
+        var energy_category_id =  $('.energy_category option:selected').val();
+        var energy_category_text =  $('.energy_category option:selected').text();
+        if(energy_category_id){
+          options = "";
+          $.ajax({ 
+            type:"POST",
+             url: baseurl+"register/getsubsectorsajax",
+             data: {secid:energy_category_id},
+             success:function(response){ 
+                var result = jQuery.parseJSON(response);
+                append_sector_list = '<li class="mb-sm-2"><a href="#" class="btn admin-btn pr-0 admin-filter-chip close-sector" data-sector="'+energy_category_id+'">'+energy_category_text+'<i class="fa fa-close btn-close-icon"></i></a><input type="hidden" name="sector[]" value="'+energy_category_id+'" /></li>';
+                 $.each(result, function(i, item) {
+                     options += '<option value="'+i+'" data-sector="'+energy_category_id+'">'+item+'</option>';
+                 });
+                if($('ul.select_sector_ui li:contains('+energy_category_text+')').length==0){
+                     $(".select_sector_ui").append(append_sector_list);
+                     $('.sub_sector').append(options);
+                  }
+              }
+          });
+        }else{
+           return false;
+        }
+  });
+
+  $(document).on('change', '.energy_category_new_user', function(e){
+        var energy_category_id =  $("option:selected", this).val();
+        var energy_category_text =  $('.energy_category_new_user option:selected').text();
+        if(energy_category_id && energy_category_id!='all'){
+          options = "";
+          $.ajax({ 
+            type:"POST",
+             url: baseurl+"register/getsubsectorsajax",
+             data: {secid:energy_category_id},
+             success:function(response){ 
+                var result = jQuery.parseJSON(response);
+                 $.each(result, function(i, item) {
+                     options += '<option value="'+i+'" data-sector="'+energy_category_id+'">'+item+'</option>';
+                 });
+               
+                     $('.sub_sector_new_user').html(options);
+              }
+          });
+        }else{
+           return false;
+        }
+  });
+
+
+$(document).on('click', '.close-city', function(e){
+  e.preventDefault();
+  $(this).closest('li').remove();
+  state_id = $(this).data('state');
+});
+
+
+$('input#organizationName').typeahead({
+      source:  function (query, process) {
+        return $.get(baseurl+'company/getorganizationName', { query: query }, function (data) {
+           data = $.parseJSON(data);
+            var newData = [];
+            map = {};
+            $.each(data, function(key,obj){
+                map[this.name] = obj;
+                newData.push(this.name);
+            });
+              return process(newData);
+          });
+
+      }
+  });
+  
+  
+  
+  
+  
+
