@@ -1,0 +1,31 @@
+function xmlReadMaster(){
+  var url = "https://api.website.com/api/properties/propertyfeeds/?auth=8c94535991d226d0b42bb0bad61198f65da02bec4033dc54083fff65b876051bed26477c7f064477e6f16900709c3580c9ecb916417556eddd3ea9580f5050d8";  
+  var xml = UrlFetchApp.fetch(url).getContentText();
+  var data = XmlService.parse(xml);
+  var issue = data.getRootElement().getChildren("property");
+  var result = [];
+  for (i in issue) {
+    result.push([issue[i].getChild("reference").getValue(),issue[i].getChild("address_1").getValue(),issue[i].getChild    ("address_2").getValue(),issue[i].getChild("city").getValue(),issue[i].getChild("postcode").getValue(),issue[i].getChild("portfolio").getValue(),issue[i].getChild("created").getValue(),issue[i].getChild("development_status").getValue(),issue[i].getChild("investment_status").getValue(),issue[i].getChild("utility_provider").getValue()]);
+    
+  }
+  //Logger.log(result);
+  var ss = fetchsheetinactivefilebyGID(0);
+  ss.getRange("A:G").clearContent();
+  var headerData = ["Property Reference"	,"Address 1",	 "Address 2",	 "City",	 "Post Code",	"Portfolio", "Created At",	 "Development Status","Investment Status","Utility Provider"];
+  ss.getRange(1,1,1,headerData.length).setValues([headerData]);
+  ss.getRange(2,1,result.length,headerData.length).setValues(result);
+}
+
+function fetchsheetinactivefilebyGID (GID) { 
+  var ss = SpreadsheetApp.getActive();   
+  var allsheets = SpreadsheetApp.getActive().getSheets();
+  for(var sheetnumber in allsheets){ // iterate all sheets and compare ids and fetch the one with the ID hardcoded
+    Logger.log(allsheets[sheetnumber].getSheetId());
+    if(allsheets[sheetnumber].getSheetId()==GID){break}
+  } 
+  var sheet = ss.getSheets()[sheetnumber];
+  return sheet;
+}
+
+ 
+ 
