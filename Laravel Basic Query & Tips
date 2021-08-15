@@ -1,0 +1,110 @@
+public function index(Request $request){
+        //Get Collections : Objects
+        //$user = User::all();
+
+        //Get Collections : Arrays 
+        //$user = User::all()->toArray();
+
+        //Data showing
+        /*echo "<pre>";
+        foreach ($user as $key => $value) {
+
+            //For User::all()->toArray();
+            echo $key."===".$value['email']; echo "<br>";
+            
+            //For User::all();
+            echo $key."===".$value->email; echo "<br>";
+        }*/
+
+
+        //Similar to all() method
+        //$user = User::get();
+        
+
+        /* 
+            - all() => You cannot modify the query performed at all (except you can choose the columns to select by passing them as parameters).
+
+            - get()=> If you need to modify the query, such as adding a where clause, then you have to use get().
+
+            - get() is used when you want to add queries and all() is used to get all data, without using any condition.
+        */
+
+        //Get only matched first record.    
+        //$user = User::where('email','LIKE','%@example.org')->firstOrFail()->toArray();
+
+
+        //Get matched all records.    
+        //$user = User::where('email','LIKE','%@example.com')->get()->toArray();
+        //$user = User::where(['id'=>2])->get()->toArray();
+        
+        //Get only single record return object    
+        //$user = User::find(3);
+
+        //Get specific value    
+        //$user = User::find(3)->email;    
+
+        //Get only single record return array    
+        //$user = User::find(3)->toArray();
+
+        //Get specific value    
+        //$user = User::find(3)->toArray()['email'];
+
+        //Get specific value    
+        //$user = User::findOrFail(443)->toArray()['email'];        
+ 
+        //$user = User::find(8);
+        //For not found or wrong id e.g. User::find(898);
+        //ErrorException : Trying to get property 'name' of non-object
+        //echo "Name : ".$user->name;            
+        //echo isset($user) ? "Name : ".$user->email : ""; 
+        
+
+        //Update Records & create new one if not exits    
+        //$user = User::updateOrCreate(['id'=>20],['name'=>"kr4324234dnia",'email'=>'kr32323f@k.in','password'=>bcrypt(12345)])->toArray();
+
+        //Updates Records normal way    
+        /*$user = User::find(7);
+        if($user){
+            $user->name = "krishhsfhe";
+            $user->save(); 
+        } */   
+
+
+        //Get JSON response
+        //$user = User::find(7);    
+        //return response()->json($user); 
+        //OR
+        //return User::find(7);    
+        
+        //Delete records
+        //$user = User::find(4)->delete();
+        
+        //Delete with well error handling if id not exist
+        //$user = User::find(10);
+        //$delete = isset($user) ? $user->delete() : '';
+        //dd($delete);
+        
+        //Update
+        //echo 11;
+        //$user = User::findOrFail(787);
+        //echo 22;
+        /*$user = User::find(8);
+        if(isset($user)){
+            echo 33;
+            $user->update(['name'=>'Kriioo']);
+        }*/
+        //echo 44;
+        //echo 55;
+        //dd($user); 
+
+        //Get All Request object data
+        //dd($request);
+
+        //Get All input data 
+        //dd($request->input()); 
+        //$input = $request->all();
+        //dd($input);
+        //Get Specific Input data
+        //dd($request->id);
+
+    }
