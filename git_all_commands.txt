@@ -63,6 +63,9 @@ git checkout master
 git merge branch1
 git push
 
+=> GIT branch and checkout using a single command
+$ git checkout -b new_branch_name
+
 =>https://stackoverflow.com/questions/20101994/git-pull-from-master-into-the-development-branch
 **********************************
 git remote rm origin
