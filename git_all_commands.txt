@@ -9,10 +9,9 @@ git config --global user.email "MY_NAME@example.com"
 =>Get User & Email 
 git config --global user.name
 git config --global user.email
+
 => Log
-
 git log --graph --oneline --all
-
 
 =>Commands list 
 git init
