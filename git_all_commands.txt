@@ -10,6 +10,9 @@ git config --global user.email "MY_NAME@example.com"
 git config --global user.name
 git config --global user.email
 
+git config --get remote.origin.url
+git remote show origin
+
 => Log
 git log --graph --oneline --all
 
