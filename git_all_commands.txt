@@ -123,8 +123,20 @@ git add .
 git commit -m "Merged WIP"
 **********************************
 
-**********************************
-**********************************
+***************DELETE COMMIT PEMENETLEY*******************
+git reset --hard HASH_KEY
+git reset --soft HASH_KEY
+git reset --mixed HASH_KEY
+
+Means->Remove from specific area
+--hard -> work for all WD+SD+LP
+--soft -> WD+SD
+--mixed -> WD
+
+
+**************DELETE COMMIT NEW COMMiT SAFE USE*********************
+git revert HASH_KEY
+Every time craete new commit 
 **********************************
 **********************************
 **********************************
