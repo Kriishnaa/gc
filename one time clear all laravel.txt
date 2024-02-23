@@ -14,3 +14,5 @@ Artisan::command('cache:all-clear', function () {
 Run with root directoty
 
 ==> php artisan cache:all-clear
+-------------------------------------------
+==> php artisan optimize:clear
