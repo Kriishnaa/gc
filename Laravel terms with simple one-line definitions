@@ -1,0 +1,152 @@
+Here’s a list of essential Laravel terms with simple one-line definitions:
+
+Laravel – A PHP framework for building modern web applications.
+Routing – Defines application URLs and their associated logic.
+Middleware – Filters HTTP requests before they reach the controller.
+Controller – Handles user requests and returns responses.
+Model – Represents database tables and handles data interactions.
+Migration – A version control system for database schema.
+Seeder – Inserts test data into the database.
+Factory – Generates fake data for testing purposes.
+Eloquent – Laravel’s ORM for interacting with databases using models.
+Blade – A templating engine for rendering dynamic views.
+Artisan – A command-line tool for automating Laravel tasks.
+Middleware – Used to filter HTTP requests (e.g., authentication).
+Service Provider – Registers services and bindings in Laravel.
+Validation – Ensures incoming data meets specified rules.
+Session – Stores user data across multiple requests.
+Cache – Temporarily stores data for faster access.
+Queue – Defers task execution to improve performance.
+Event – A way to listen and respond to application events.
+Listener – Handles events and executes logic.
+Job – Represents a background task in Laravel.
+Notification – Sends messages via email, SMS, or Slack.
+Policy – Defines authorization rules for models.
+Gate – Provides simple access control for users.
+Broadcasting – Sends real-time data using WebSockets.
+Collection – A wrapper for working with arrays of data.
+Helper Functions – Built-in functions to simplify tasks.
+Config – Stores application settings and configurations.
+Env File (.env) – Stores environment-specific variables.
+Tinker – A REPL tool for interacting with the application.
+Testing – Automates application testing using PHPUnit/Pest.
+CSRF Token – Protects against cross-site request forgery attacks.
+Rate Limiting – Restricts the number of requests per user.
+Localization – Manages multiple languages for an application.
+Mutator – Modifies an attribute before saving it to the database.
+Accessor – Modifies an attribute when retrieving it from the database.
+Soft Delete – Marks records as deleted without actually removing them.
+Observer – Watches for model events and performs actions.
+Guard – Defines authentication drivers (e.g., session, API tokens).
+Provider – Manages user authentication sources.
+Rate Limiting – Controls how many requests a user can make in a time frame.
+Broadcast Channel – Defines how real-time events are shared.
+File Storage – Manages local and cloud file uploads.
+Log – Records system activity and errors.
+Hashing – Encrypts passwords for security.
+Passport – Laravel’s package for OAuth authentication.
+Sanctum – A lightweight authentication system for API tokens.
+Slug – A URL-friendly version of a string.
+UUID (Universally Unique Identifier) – A unique identifier for database records.
+CORS (Cross-Origin Resource Sharing) – Controls API access from different domains.
+Schema Builder – Helps manage database structures using PHP code.
+Broadcast Driver – Specifies the service used for broadcasting events (e.g., Pusher).
+Task Scheduling – Automates repetitive tasks using cron jobs.
+Helper Methods – Laravel-specific functions for common tasks.
+Flysystem – A package for handling multiple file storage systems.
+Resource Controller – Manages CRUD operations with predefined methods.
+Scoping – Restricts queries based on specific conditions.
+API Resource – Transforms data before sending it in an API response.
+Pipeline – Chains multiple operations together for request processing.
+Macroable – Allows custom methods to be added to classes dynamically.
+Facades – Static interfaces to Laravel services (e.g., Cache::get()).
+Schema Dumping – Saves the database structure for faster migrations.
+Deferred Service Providers – Loads services only when needed for performance optimization.
+Request Lifecycle – The complete process of handling an HTTP request in Laravel.
+Singleton – A design pattern where only one instance of a class exists.
+Dependency Injection – Injecting dependencies instead of instantiating them inside a class.
+Autowiring – Automatically resolving class dependencies.
+Service Container – Manages class dependencies and their resolution.
+Middleware Groups – A collection of middleware applied to routes.
+Route Model Binding – Automatically injects models into route parameters.
+Resource Routes – Generates multiple CRUD routes for a controller.
+Implicit Binding – Automatically resolves route parameters to Eloquent models.
+Explicit Binding – Manually defines how route parameters map to models.
+API Rate Limiting – Restricts API request frequency per user or IP.
+Lazy Loading – Loads related data only when accessed.
+Eager Loading – Preloads related data to optimize queries.
+N+1 Query Problem – Performance issue caused by excessive database queries.
+HasMany – Defines a one-to-many relationship in Eloquent.
+BelongsTo – Defines an inverse one-to-many relationship.
+HasOne – Defines a one-to-one relationship in Eloquent.
+HasManyThrough – Defines a distant one-to-many relationship via an intermediate table.
+BelongsToMany – Defines a many-to-many relationship between models.
+Pivot Table – An intermediate table for many-to-many relationships.
+Polymorphic Relationship – Allows a model to belong to multiple other models.
+Reverse Polymorphic Relationship – Retrieves the owning model of a polymorphic relationship.
+Timestamps – Auto-managed created_at and updated_at fields in Eloquent models.
+Hidden Attributes – Fields that are excluded from model responses.
+Fillable Attributes – Defines which attributes can be mass-assigned.
+Guarded Attributes – Prevents specific attributes from mass assignment.
+Route Fallback – A default route when no other routes match.
+Route Prefixing – Adds a common prefix to a group of routes.
+Route Namespacing – Organizes controllers within a specific namespace.
+Route Middleware – Applies middleware to specific routes or route groups.
+Route Caching – Optimizes route resolution for performance.
+Named Routes – Assigns custom names to routes for easy referencing.
+Binding Interfaces to Implementations – Injects concrete classes into interfaces.
+Event Service Provider – Registers application event listeners.
+Observer Pattern – Watches model events and triggers actions automatically.
+Exception Handling – Manages application errors and exceptions.
+Custom Error Pages – Displays user-friendly error pages (e.g., 404, 500).
+Logging Channels – Configures where and how logs are stored.
+Log Stack – Combines multiple logging channels.
+Custom Validation Rules – Defines custom rules for form validation.
+Rule Objects – Encapsulates complex validation logic into reusable classes.
+Queued Jobs – Executes tasks asynchronously using queues.
+Job Batching – Groups multiple jobs and executes them together.
+Job Retry Mechanism – Reattempts failed jobs automatically.
+Job Expiration – Defines how long a job can stay in the queue.
+Failed Job Table – Stores details of failed jobs for debugging.
+Broadcast Service Provider – Registers broadcasting channels.
+Redis Queue – Uses Redis as a queue driver for handling background jobs.
+Database Queue – Uses a database table to manage queued jobs.
+File Queue – Stores queued jobs in the file system.
+On-Demand Notifications – Sends notifications without using stored models.
+Markdown Mailables – Uses Markdown templates for email formatting.
+Mail Queueing – Sends emails asynchronously to improve performance.
+Custom Mail Drivers – Uses external mail services like Mailgun or SMTP.
+Resource Collection – Transforms multiple models into API responses.
+Conditional Relationships – Loads relationships only if certain conditions are met.
+Dynamic Scopes – Applies query conditions dynamically in Eloquent.
+Custom Blade Directives – Defines custom Blade syntax for templates.
+Inline Blade Components – Renders Blade components inline in templates.
+Livewire – A package for building dynamic interfaces without JavaScript.
+Inertia.js – A framework for building single-page apps using Laravel.
+TALL Stack – A combination of Tailwind CSS, Alpine.js, Laravel, and Livewire.
+Laravel Scout – A package for full-text search indexing.
+Laravel Socialite – Handles OAuth authentication for social logins.
+Laravel Telescope – A debugging tool for monitoring application activity.
+Laravel Echo – A JavaScript library for real-time event broadcasting.
+Laravel Horizon – A dashboard for managing queue workers.
+Laravel Mix – A tool for compiling and optimizing frontend assets.
+Laravel Jetstream – A starter kit for authentication and team management.
+Laravel Breeze – A lightweight authentication starter kit.
+Laravel Fortify – A backend authentication implementation.
+Laravel Sanctum SPA Authentication – API authentication for single-page apps.
+Laravel Octane – Optimizes Laravel performance using high-speed servers.
+Laravel Vapor – A serverless deployment platform for Laravel.
+Laravel Sail – A lightweight Docker-based local development environment.
+Laravel Envoyer – A zero-downtime deployment tool.
+Laravel Pint – A PHP code style fixer for Laravel applications.
+Laravel Cashier – A package for handling Stripe and Paddle subscriptions.
+Laravel Nova – An admin panel for managing Laravel applications.
+Laravel Spark – A SaaS boilerplate for subscription-based apps.
+Laravel Snappy – Generates PDFs from HTML templates.
+Laravel Spatie Permissions – A package for managing roles and permissions.
+Laravel Debugbar – A tool for debugging Laravel applications.
+Laravel Trustpilot – A package for integrating Trustpilot reviews.
+Laravel Backup – Automates database and file backups.
+Laravel Multitenancy – Manages multiple tenants within a single Laravel app.
+Laravel DataTables – A tool for handling large datasets in tables.
+Laravel PDF – A package for generating PDFs from Blade views.
