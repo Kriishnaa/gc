@@ -1,4 +1,7 @@
 Here’s a list of essential Laravel terms with simple one-line definitions:
+ 
+Authentication = Identity check (Are you allowed inside?)
+Authorization = Permission check (What can you access inside?)
 
 Laravel – A PHP framework for building modern web applications.
 Routing – Defines application URLs and their associated logic.
